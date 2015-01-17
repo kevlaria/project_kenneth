@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Manifest:</strong>
+  <%= @order.manifest %>
+</p>
+
+<p>
+  <strong>Pickup name:</strong>
+  <%= @order.pickup_name %>
+</p>
+
+<p>
+  <strong>Pickup address:</strong>
+  <%= @order.pickup_address %>
+</p>
+
+<p>
+  <strong>Pickup phone number:</strong>
+  <%= @order.pickup_phone_number %>
+</p>
+
+<p>
+  <strong>Pickup business name:</strong>
+  <%= @order.pickup_business_name %>
+</p>
+
+<p>
+  <strong>Pickup notes:</strong>
+  <%= @order.pickup_notes %>
+</p>
+
+<p>
+  <strong>Dropoff name:</strong>
+  <%= @order.dropoff_name %>
+</p>
+
+<p>
+  <strong>Dropoff address:</strong>
+  <%= @order.dropoff_address %>
+</p>
+
+<p>
+  <strong>Dropoff phone number:</strong>
+  <%= @order.dropoff_phone_number %>
+</p>
+
+<p>
+  <strong>Dropoff business name:</strong>
+  <%= @order.dropoff_business_name %>
+</p>
+
+<p>
+  <strong>Dropoff notes:</strong>
+  <%= @order.dropoff_notes %>
+</p>
+
+<p>
+  <strong>Quote:</strong>
+  <%= @order.quote_id %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

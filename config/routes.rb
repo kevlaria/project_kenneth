@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :orders
+
   resources :events
 
   devise_for :users

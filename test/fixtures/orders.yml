@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manifest: MyText
+  pickup_name: MyString
+  pickup_address: MyString
+  pickup_phone_number: MyString
+  pickup_business_name: MyString
+  pickup_notes: MyText
+  dropoff_name: MyString
+  dropoff_address: MyString
+  dropoff_phone_number: MyString
+  dropoff_business_name: MyString
+  dropoff_notes: MyText
+  quote_id: MyString
+
+two:
+  manifest: MyText
+  pickup_name: MyString
+  pickup_address: MyString
+  pickup_phone_number: MyString
+  pickup_business_name: MyString
+  pickup_notes: MyText
+  dropoff_name: MyString
+  dropoff_address: MyString
+  dropoff_phone_number: MyString
+  dropoff_business_name: MyString
+  dropoff_notes: MyText
+  quote_id: MyString
