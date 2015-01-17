@@ -21,8 +21,8 @@ class Event < ActiveRecord::Base
   
 
   def self.processOrders
-  	@now = Event.where(:starts_at => Time.now - 5.hours..Time.now - 5.hours + 1.minute)
-  	@next = Event.where(:starts_at => Time.now - 6.hours..Time.now - 6.hours + 1.minute)
+  	@now = Event.where(:starts_at => Time.now - 5.hours - 10.minutes..Time.now - 5.hours)
+  	@next = Event.where(:starts_at => Time.now - 6.hours - 10.minutes..Time.now - 6.hours)
   	@now.each do |event|
   		if event.category == "Order" then
   			order = Order.find(event.event_id)
