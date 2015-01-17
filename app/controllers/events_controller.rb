@@ -15,17 +15,19 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @where = "new"
   end
 
   # GET /events/1/edit
   def edit
+    @where = "edit"
   end
 
   # POST /events
   # POST /events.json
   def create
+    params["event"]["event_id"] = get_next_id(params["event"]["category"])    
     @event = Event.new(event_params)
-
     respond_to do |format|
       if @event.save
         case @event.category
@@ -44,6 +46,23 @@ class EventsController < ApplicationController
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
+    end
+    case params["repeat"]
+    when "Daily"
+      29.times do |events|
+        @future = @event.dup
+        @future.starts_at += 1.day
+        @future.save
+        @event = @future
+      end
+    when "Weekly"
+      4.times do |events|
+        @future = @event.dup
+        @future.starts_at += 7.day
+        @future.save
+        @event = @future
+      end
+    else
     end
   end
 
@@ -72,6 +91,15 @@ class EventsController < ApplicationController
   end
 
   private
+
+    def get_next_id type
+      case type
+        when "Order"
+          return Order.count + 1
+        when "Nest"
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
