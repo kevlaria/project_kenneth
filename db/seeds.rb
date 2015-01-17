@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-event = Event.create([{name: "Shopping", starts_at:Time.now}, {name: "Party", starts_at:(Time.now - 1.day)}])
+event = Event.create([{name: "Shopping", starts_at:Time.now, user_id: 1}, {name: "Party", starts_at:(Time.now - 1.day), user_id:2}])
