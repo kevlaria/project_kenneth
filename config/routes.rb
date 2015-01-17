@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   
   get "/calendar/home"
+  get "/calendar/events", to: 'calendar#events'
   get "/orders/confirm/:id" => 'orders#confirm'
   root :to => redirect('/calendar/home')
   # The priority is based upon order of creation: first created -> highest priority.
