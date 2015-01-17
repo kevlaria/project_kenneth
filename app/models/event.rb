@@ -13,13 +13,17 @@
 #
 
 class Event < ActiveRecord::Base
+  extend SimpleCalendar
+  has_calendar
+  
   belongs_to :user
+  
 
   
 
   def self.processOrders
-  	@now = Event.where(:time => Time.now - 5.hours..Time.now - 5.hours + 1.minute)
-  	@next = Event.where(:time => Time.now - 6.hours..Time.now - 6.hours + 1.minute)
+  	@now = Event.where(:starts_at => Time.now - 5.hours..Time.now - 5.hours + 1.minute)
+  	@next = Event.where(:starts_at => Time.now - 6.hours..Time.now - 6.hours + 1.minute)
   	@now.each do |event|
   		if event.category == "Order" then
   			order = Order.find(event.event_id)
