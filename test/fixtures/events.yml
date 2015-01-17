@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  type       :string(255)
+#  time       :datetime
+#  event_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  time: 2015-01-17 00:21:59
+  event_id: 1
+
+two:
+  name: MyString
+  type: 
+  time: 2015-01-17 00:21:59
+  event_id: 1
