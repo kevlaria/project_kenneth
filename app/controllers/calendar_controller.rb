@@ -10,7 +10,8 @@ class CalendarController < ApplicationController
         "id" => event.id,
         "title" => event.name,
         "allDay" => false,
-        "start" => event.starts_at.to_time.iso8601,     
+        "start" => event.starts_at.to_time.iso8601, 
+        "url" => '/events/' + event.id.to_s + '/edit'    
       }
       
     end
