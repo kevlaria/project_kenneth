@@ -21,10 +21,21 @@
         <%= f.label :starts_at %><br>
         <%= f.datetime_select :starts_at %>
       </div>
-      <%= f.radio_button(:category, "Order") %>
-      <%= label_tag(:postmate, "Order Products") %>
-      <%= f.radio_button(:category, "Nest") %>
-      <%= label_tag(:next, "Adjust Thermostat") %>
+      <div>
+        <%= f.radio_button(:category, "Order") %>
+        <%= label_tag(:postmate, "Order Products") %>
+        <%= f.radio_button(:category, "Nest") %>
+        <%= label_tag(:next, "Adjust Thermostat") %>
+      </div>
+      <div>
+        Repeat:
+        <%= radio_button_tag(:repeat, "Never") %>
+        <%= label_tag(:never, "Never") %>
+        <%= radio_button_tag(:repeat, "Daily") %>
+        <%= label_tag(:daily, "Daily") %>
+        <%= radio_button_tag(:repeat, "Weekly") %>
+        <%= label_tag(:weekly, "Weekly") %>
+      </div>
       <div class="actions">
         <%= f.submit %>
       </div>
