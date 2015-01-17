@@ -19,7 +19,7 @@
 #  updated_at            :datetime
 #  confirmation          :boolean          default(FALSE), not null
 #  access                :string(255)
-#
+#events/2
 
 class Order < ActiveRecord::Base
 
@@ -42,7 +42,7 @@ class Order < ActiveRecord::Base
 		@@client.messages.create(
 		  from: '+12673231393',
 		  to: '+1' + dropoff_phone_number,
-		  body: 'Hey ' + dropoff_name + '. You ordered ' + manifest + ' in your Kenneth Calendar. To confirm the order, click on this link http://kenneth.herokuapp.com/orders/confirm/' + access 
+		  body: 'Hey ' + dropoff_name + '. You ordered ' + manifest + ' in your Kenneth Calendar. To confirm the order, click on this link http://158.130.107.192/orders/confirm/' + access 
 		)
 	end
 

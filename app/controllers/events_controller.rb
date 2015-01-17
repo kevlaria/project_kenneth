@@ -28,8 +28,18 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        case @event.category
+        when "Order"
+          @order = Order.new
+          format.html { redirect_to new_order_path(@order), notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }
+        when "Nest"
+          format.html { redirect_to new_order_path, notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }          
+        else
+          format.html { redirect_to @event, notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }
+        end
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -69,6 +79,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :category, :time, :event_id)
+      params.require(:event).permit(:name, :category, :starts_at, :event_id)
     end
 end
