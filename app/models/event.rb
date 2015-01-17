@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
   
   belongs_to :user
   
-	default_scope order('starts_at ASC')
+	default_scope {order('starts_at ASC')}
   
 
   def self.processOrders
