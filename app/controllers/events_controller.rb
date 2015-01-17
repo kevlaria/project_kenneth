@@ -15,10 +15,12 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @where = "new"
   end
 
   # GET /events/1/edit
   def edit
+    @where = "edit"
   end
 
   # POST /events
