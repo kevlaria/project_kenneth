@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  name       :string(255)
 #  category   :string(255)
-#  time       :datetime
+#  starts_at  :datetime
 #  event_id   :integer
 #  created_at :datetime
 #  updated_at :datetime
@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
   
   belongs_to :user
   
-
+	default_scope order('starts_at ASC')
   
 
   def self.processOrders
