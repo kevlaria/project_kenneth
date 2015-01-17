@@ -28,6 +28,7 @@ class EventsController < ApplicationController
   def create
     params["event"]["event_id"] = get_next_id(params["event"]["category"])    
     @event = Event.new(event_params)
+    @event.user_id = current_user.id
     respond_to do |format|
       if @event.save
         case @event.category

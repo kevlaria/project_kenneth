@@ -61,7 +61,7 @@
           <%= yield %>
         </div>
 
-        <!-- <div class="col-lg-3">
+        <!-- <div class="col-lg-3">s
           <div class="well sidebar-nav">
             <h3>Sidebar</h3>
             <ul class="nav nav-list">
@@ -75,7 +75,7 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; fans of kenneth 2015</p>
+        <p>&copy; fans of kenneth 2015, <%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></p>
       </footer>
 
     </div> <!-- /container -->
