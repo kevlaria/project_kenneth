@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every 1.minutes do
-	runner "Event.process"
-end
+	runner "Event.processOrders"
+en

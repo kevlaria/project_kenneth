@@ -1,0 +1,52 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id                    :integer          not null, primary key
+#  manifest              :text
+#  pickup_name           :string(255)
+#  pickup_address        :string(255)
+#  pickup_phone_number   :string(255)
+#  pickup_business_name  :string(255)
+#  pickup_notes          :text
+#  dropoff_name          :string(255)
+#  dropoff_address       :string(255)
+#  dropoff_phone_number  :string(255)
+#  dropoff_business_name :string(255)
+#  dropoff_notes         :text
+#  quote_id              :string(255)
+#  created_at            :datetime
+#  updated_at            :datetime
+#  confirmation          :boolean
+#  hash                  :boolean          default(FALSE), not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manifest: MyText
+  pickup_name: MyString
+  pickup_address: MyString
+  pickup_phone_number: MyString
+  pickup_business_name: MyString
+  pickup_notes: MyText
+  dropoff_name: MyString
+  dropoff_address: MyString
+  dropoff_phone_number: MyString
+  dropoff_business_name: MyString
+  dropoff_notes: MyText
+  quote_id: MyString
+
+two:
+  manifest: MyText
+  pickup_name: MyString
+  pickup_address: MyString
+  pickup_phone_number: MyString
+  pickup_business_name: MyString
+  pickup_notes: MyText
+  dropoff_name: MyString
+  dropoff_address: MyString
+  dropoff_phone_number: MyString
+  dropoff_business_name: MyString
+  dropoff_notes: MyText
+  quote_id: MyString
