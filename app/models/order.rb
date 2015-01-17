@@ -1,26 +1,3 @@
-# == Schema Information
-#
-# Table name: orders
-#
-#  id                    :integer          not null, primary key
-#  manifest              :text
-#  pickup_name           :string(255)
-#  pickup_address        :string(255)
-#  pickup_phone_number   :string(255)
-#  pickup_business_name  :string(255)
-#  pickup_notes          :text
-#  dropoff_name          :string(255)
-#  dropoff_address       :string(255)
-#  dropoff_phone_number  :string(255)
-#  dropoff_business_name :string(255)
-#  dropoff_notes         :text
-#  quote_id              :string(255)
-#  created_at            :datetime
-#  updated_at            :datetime
-#  confirmation          :boolean
-#  hash                  :boolean          default(FALSE), not null
-#
-
 class Order < ActiveRecord::Base
 
   @@account_sid = 'ACd882ca7c1db91ca067d5072ac3f0a5b8'
