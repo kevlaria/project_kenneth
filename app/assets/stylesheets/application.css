@@ -14,3 +14,7 @@
  *= require_self
  *= require fullcalendar
  */
+
+div {
+	font-family: 'Source Sans Pro', sans-serif;
+}

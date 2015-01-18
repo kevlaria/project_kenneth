@@ -1,7 +1,11 @@
-  <strong>Order: </strong>
-  <div class="detail_info">
-	  <%= @order.manifest %>
-  </div></br>
+
+  <% if @order.manifest%>
+  	<strong>Order: </strong>
+  	<div class="detail_info">
+		  <%= @order.manifest %>
+  	</div></br>
+  <% end %>
+  
   <strong>Ordered from:</strong></br>
   <div class="detail_info small">
 

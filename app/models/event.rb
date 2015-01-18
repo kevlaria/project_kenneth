@@ -17,13 +17,17 @@ require 'json'
 
 class Event < ActiveRecord::Base
   has_one :nest
-  has_one :order
   has_one :weather
   belongs_to :user
   
 
 	default_scope {order('starts_at ASC')}
   
+	def order
+		if category == 'Order'
+			Order.find(event_id)
+		end
+	end
 
   def self.processOrders
   	@now = Event.where(:starts_at => Time.now - 5.hours..Time.now - 5.hours + 1.minute)
