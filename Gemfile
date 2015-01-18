@@ -40,8 +40,10 @@ gem 'devise'
 gem 'annotate'
 gem 'httparty', '~> 0.8.3'
 
-gem 'firebase'
 gem 'nest_thermostat'
+gem 'geocoder'
+gem 'yelp'
+
 
 
 group :production do
