@@ -28,8 +28,9 @@ class OrdersController < ApplicationController
       @order = order[0]
       @order.confirmation = true
       @order.save
+      @event = Event.find(@order.event_id)
       respond_to do |format|
-        format.html { redirect_to @order, notice: 'Order was confirmed!' }
+        format.html { redirect_to @event, notice: 'Order was confirmed!' }
         format.json { render :show, status: :created, location: @order }
       end
     end
@@ -42,7 +43,7 @@ class OrdersController < ApplicationController
       order_nearby
       render :new
     else
-      params["order"]["access"] = Digest::SHA1.base64digest((Order.count + 1).to_s)
+      params["order"]["access"] = Digest::SHA1.hexdigest((Order.count + 1).to_s)
       @order = Order.new(order_params)
       puts @order.access
       puts @order.confirmation
@@ -103,7 +104,7 @@ class OrdersController < ApplicationController
     result = results.min_by { |place| place.distance}
     pickup_address = result.location.display_address.join(', ')
     pickup_phone_number = result.phone.last(10)
-    @order = Order.new(object_params)
+    @order = Order.new(order_params)
     @order.assign_attributes({pickup_name: pickup_name, dropoff_name: dropoff_name,
         dropoff_address: dropoff_address, dropoff_phone_number: dropoff_phone_number,
         pickup_address: pickup_address, pickup_phone_number: pickup_phone_number})

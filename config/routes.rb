@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   resources :nests
-
-  resources :weathers
   get "/orders/confirm/:id" => 'orders#confirm'
+  resources :weathers
   resources :orders
 
   resources :events
