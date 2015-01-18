@@ -77,6 +77,29 @@ class OrdersController < ApplicationController
     end
   end
 
+  def order_nearby
+    @pickup_name = params['pickup_name']
+    location = Geocoder.search(request.remote_ip)
+    # @pickup_name = 'Starbucks'
+    # location = Geocoder.search('158.130.108.92').first
+    lat = location.data['latitude']
+    lon = location.data['longitude']
+    @dropoff_name = current_user.name
+    @dropoff_address = Geocoder.search([lat, lon]).first.data['formatted_address']
+    @dropoff_phone_number = current_user.phone
+
+    yelp_params = {term: @pickup_name}
+    coordinates = {latitude: lat, longitude: lon}
+    results = Yelp.client.search_by_coordinates(coordinates, yelp_params).businesses.select {|place| place.has_key?(:phone)}
+    result = results.min_by { |place| place.distance}
+    @pickup_address = result.location.display_address.join(', ')
+    @pickup_phone_number = result.phone.last(10)
+    puts @pickup_address
+    puts @pickup_phone_number
+
+    format.html { render :new }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -86,5 +109,9 @@ class OrdersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       params.require(:order).permit(:confirmation, :access, :manifest, :pickup_name, :pickup_address, :pickup_phone_number, :pickup_business_name, :pickup_notes, :dropoff_name, :dropoff_address, :dropoff_phone_number, :dropoff_business_name, :dropoff_notes, :quote_id)
+    end
+
+    def distance_from_me(place)
+
     end
 end
