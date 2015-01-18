@@ -61,7 +61,6 @@
             </div>
               <p><div class="editfield" style="display:none;">
                 <%= f.label :do_you_want_to_repeat_an_old_order? %><br>
-                <%= collection_select(:order, :order_id, current_user.orders, :id, :manifest, {:prompt => true}) %>
 
               </div></p>
           </p>

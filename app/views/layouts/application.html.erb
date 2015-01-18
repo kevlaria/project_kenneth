@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,42 +46,47 @@
   </head>
   <body>
 
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-       	<%= link_to 'Kenneth & Me', '/', class: "navbar-brand", method: :get %>
-      </div>
-    </div>
+    <% if params["action"] == "new" && params["controller"] == "devise/sessions" %>
+            <%= bootstrap_flash %>
+            <%= yield %>
+    <% else %>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-9">
-          <%= bootstrap_flash %>
-          <%= yield %>
+      <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+         	<%= link_to 'Kenneth & Me', '/', class: "navbar-brand", method: :get %>
         </div>
+      </div>
 
-        <!-- <div class="col-lg-3">s
-          <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9">
+            <%= bootstrap_flash %>
+            <%= yield %>
           </div>
-        </div><!--/span-->
-      </div><!--/row-->
 
-      <footer>
-       	<%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></p>
-      </footer>
+          <!-- <div class="col-lg-3">s
+            <div class="well sidebar-nav">
+              <h3>Sidebar</h3>
+              <ul class="nav nav-list">
+                <li class="nav-header">Sidebar</li>
+                <li><%= link_to "Link1", "/path1"  %></li>
+                <li><%= link_to "Link2", "/path2"  %></li>
+                <li><%= link_to "Link3", "/path3"  %></li>
+              </ul>
+            </div>
+          </div><!--/span-->
+        </div><!--/row-->
 
-    </div> <!-- /container -->
+        <footer>
+         	<%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></p>
+        </footer>
 
+      </div> <!-- /container -->
+    <% end %>
   </body>
 </html>

@@ -1,4 +1,5 @@
 <%= form_for(@nest) do |f| %>
+  <div class="general_details">
   <% if @nest.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@nest.errors.count, "error") %> prohibited this nest from being saved:</h2>
@@ -17,6 +18,8 @@
   </div>
   <%= f.hidden_field :event_id, :value => @event_id %>
   <div class="actions">
-    <%= f.submit %>
+    <%= link_to 'Back', nests_path, class: "btn btn-back" %>
+    <%= f.submit class: "btn btn-back" %>
   </div>
+</div>
 <% end %>

@@ -1,4 +1,6 @@
 <%= form_for(@order) do |f| %>
+<div>
+    <div>
 
   <% if @order.errors.any? %>
     <div id="error_explanation">
@@ -11,12 +13,8 @@
     </div>
   <% end %>
 
-<div class="show_details">
-  <div class="bounding_box">
-
     <div class="general_details">
       <strong>Order from:</strong></br>
-        <div class="detail_info small">
           <div class="field">
             <%= f.label :manifest %><br>
             <%= f.text_area :manifest %>
@@ -40,14 +38,12 @@
             <%= f.label :pickup_notes %><br>
             <%= f.text_area :pickup_notes %>
           </div>
-        </div>
     </div>
 
   </br>
   
     <div class="special_details">
       <strong>Deliver to:</strong></br>
-        <div class="detail_info small">
           <div class="field">
             <%= f.label :dropoff_name %><br>
             <%= f.text_field :dropoff_name %>
@@ -73,12 +69,10 @@
           <div class="actions">
             <%= f.submit %>
           </div>
-        </div>
     </div>
 
-  </div>
-</div>
 
-  
+    </div>
+</div>
 <% end %>
 

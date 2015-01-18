@@ -1,4 +1,5 @@
 <%= form_for(@weather) do |f| %>
+        <div class="general_details">
   <% if @weather.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@weather.errors.count, "error") %> prohibited this weather from being saved:</h2>
@@ -17,10 +18,12 @@
   </div>
   <div class="field">
     <%= f.label :state %><br>
-    <%= f.text_area :state %>
+    <%= f.text_field :state %>
   </div>
   <%= f.hidden_field :event_id, :value => @event_id %>
   <div class="actions">
-    <%= f.submit %>
+    <%= link_to 'Back', nests_path, class: "btn btn-back" %>
+    <%= f.submit class: "btn btn-back" %>
   </div>
+</div>
 <% end %>

@@ -1,23 +1,36 @@
+<div id="bg">
+	  <img src="/images/kenny.jpg" alt="">
+</div>	  
 <div id="homepage-wrapper">
-	<div id="homepage" class="container">
+	<div class="container">
 
-<h2>Log in</h2>
+</br></br></br>
+<h1 id="kennyandme">
+ 	Kenneth & Me
+</h1></br>
 
+<p id="description">
+	A personal assistant app for all your needs
+</p>
+
+</br></br></br>
+<h1 >Log in</h1>
+</br>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
-
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
+  <div><p><%= f.label :email %>
+  <%= f.email_field :email, autofocus: true %>       <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "off" %>
+      <%= f.submit "Log in" %> </div>
+  <strong>
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+    <%= f.check_box :remember_me %> <%= f.label :remember_me %> |
   <% end -%>
 
-  <div><%= f.submit "Log in" %></div>
+  <%= render "devise/shared/links" %>
+</strong>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
 
 </div>
 </div>
