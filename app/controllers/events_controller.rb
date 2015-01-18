@@ -28,31 +28,40 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user_id = current_user.id
-    respond_to do |format|
-      if @event.save
-        case @event.category
-        when "Order"
-          @order = Order.new
-          format.html { redirect_to new_order_path(@order, :event_id => @event.id), notice: 'Event was successfully created.' }
-          format.json { render :show, status: :created, location: @event }
-        when "Nest"
-          @nest = Nest.new
-          format.html { redirect_to new_nest_path(@nest, :event_id => @event.id), notice: 'Event was successfully created.' }
-          format.json { render :show, status: :created, location: @event }
-        when "Weather"
-          @weather = Weather.new(event_id: @event.id)
-          @weather.save
-          format.html { redirect_to new_weather_path(@weather, :event_id => @event.id), notice: 'Event was successfully created.' }
-          format.json { render :show, status: :created, location: @event }                 
+
+    if params['order'] && params['order']['order_id'].present?
+      @event.event_id = params['order']['order_id']
+      @event.save
+      redirect_to root_path, notice: 'Order was successfully created.'
+
+    else
+      respond_to do |format|
+        if @event.save
+          case @event.category
+            when "Order"
+              @order = Order.new
+              format.html { redirect_to new_order_path(@order, :event_id => @event.id), notice: 'Event was successfully created.' }
+              format.json { render :show, status: :created, location: @event }
+            when "Nest"
+              @nest = Nest.new
+              format.html { redirect_to new_nest_path(@nest, :event_id => @event.id), notice: 'Event was successfully created.' }
+              format.json { render :show, status: :created, location: @event }
+            when "Weather"
+              @weather = Weather.new(event_id: @event.id)
+              @weather.save
+              format.html { redirect_to new_weather_path(@weather, :event_id => @event.id), notice: 'Event was successfully created.' }
+              format.json { render :show, status: :created, location: @event }
+            else
+              format.html { redirect_to @event, notice: 'Event was successfully created.' }
+              format.json { render :show, status: :created, location: @event }
+          end
         else
-          format.html { redirect_to @event, notice: 'Event was successfully created.' }
-          format.json { render :show, status: :created, location: @event }
+          format.html { render :new }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
         end
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
+
     case params["repeat"]
     when "Daily"
       29.times do |events|

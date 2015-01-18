@@ -48,6 +48,7 @@ class OrdersController < ApplicationController
       puts @order.confirmation
       respond_to do |format|
         if @order.save
+          Event.find(params['order']['event_id']).update(event_id: @order.id)
           format.html { redirect_to root_path, notice: 'Order was successfully created.' }
           format.json { render :show, status: :created, location: @order }
         else
