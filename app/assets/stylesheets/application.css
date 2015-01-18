@@ -18,3 +18,22 @@
 div {
 	font-family: 'Source Sans Pro', sans-serif;
 }
+
+
+/*********************************************************************************/
+/* Homepage                                                                      */
+/*********************************************************************************/
+
+	#homepage-wrapper
+	{
+		position: relative;
+		padding: 5em 0em 7em 0em;
+		background: url(/images/kenny.jpg) no-repeat center;
+		background-size: cover;
+	}
+
+	#homepage
+	{
+		position: relative;
+		padding: 5em 0em;
+	}

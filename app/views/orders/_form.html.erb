@@ -1,8 +1,8 @@
 <%= form_for(@order) do |f| %>
+
   <% if @order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
       <ul>
       <% @order.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,61 +10,75 @@
       </ul>
     </div>
   <% end %>
-  <%= @event_id %>
-  <div class="field">
-    <%= f.label :manifest %><br>
-    <%= f.text_area :manifest %>
-  </div>
-  <div class="field">
-    <%= f.label :pickup_name %><br>
-    <%= f.text_field :pickup_name %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Order Nearby'%>
-  </div>
-  <div class="field">
-    <%= f.label :pickup_address %><br>
-    <%= f.text_field :pickup_address %>
-  </div>
-  <div class="field">
-    <%= f.label :pickup_phone_number %><br>
-    <%= f.text_field :pickup_phone_number %>
-  </div>
-  <div class="field">
-    <%= f.label :pickup_business_name %><br>
-    <%= f.text_field :pickup_business_name %>
-  </div>
-  <div class="field">
-    <%= f.label :pickup_notes %><br>
-    <%= f.text_area :pickup_notes %>
-  </div>
-  <div class="field">
-    <%= f.label :dropoff_name %><br>
-    <%= f.text_field :dropoff_name %>
-  </div>
-  <div class="field">
-    <%= f.label :dropoff_address %><br>
-    <%= f.text_field :dropoff_address %>
-  </div>
-  <div class="field">
-    <%= f.label :dropoff_phone_number %><br>
-    <%= f.text_field :dropoff_phone_number %>
-  </div>
-  <div class="field">
-    <%= f.label :dropoff_business_name %><br>
-    <%= f.text_field :dropoff_business_name %>
-  </div>
-  <div class="field">
-    <%= f.label :dropoff_notes %><br>
-    <%= f.text_area :dropoff_notes %>
-  </div>
-  <div class="field">
-    <%= f.label :quote_id %><br>
-    <%= f.text_field :quote_id %>
 
-    <%= f.hidden_field :event_id, :value => @event_id %>
+<div class="show_details">
+  <div class="bounding_box">
+
+    <div class="general_details">
+      <strong>Order from:</strong></br>
+        <div class="detail_info small">
+          <div class="field">
+            <%= f.label :manifest %><br>
+            <%= f.text_area :manifest %>
+          </div>
+          <div class="field">
+            <%= f.label :pickup_name %><br>
+            <%= f.text_field :pickup_name %>
+          </div>
+          <div class="actions">
+            <%= f.submit 'Order Nearby'%>
+          </div>
+          <div class="field">
+            <%= f.label :pickup_address %><br>
+            <%= f.text_field :pickup_address %>
+          </div>
+          <div class="field">
+            <%= f.label :pickup_phone_number %><br>
+            <%= f.text_field :pickup_phone_number %>
+          </div>
+          <div class="field">
+            <%= f.label :pickup_notes %><br>
+            <%= f.text_area :pickup_notes %>
+          </div>
+        </div>
+    </div>
+
+  </br>
+  
+    <div class="special_details">
+      <strong>Deliver to:</strong></br>
+        <div class="detail_info small">
+          <div class="field">
+            <%= f.label :dropoff_name %><br>
+            <%= f.text_field :dropoff_name %>
+          </div>
+          <div class="field">
+            <%= f.label :dropoff_address %><br>
+            <%= f.text_field :dropoff_address %>
+          </div>
+          <div class="field">
+            <%= f.label :dropoff_phone_number %><br>
+            <%= f.text_field :dropoff_phone_number %>
+          </div>
+          <div class="field">
+            <%= f.label :dropoff_notes %><br>
+            <%= f.text_area :dropoff_notes %>
+          </div>
+          <div class="field">
+            <%= f.label :quote_id %><br>
+            <%= f.text_field :quote_id %>
+        
+            <%= f.hidden_field :event_id, :value => @event_id %>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        </div>
+    </div>
+
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
+
+  
 <% end %>
+
