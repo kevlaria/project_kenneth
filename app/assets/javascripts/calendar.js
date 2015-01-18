@@ -7,10 +7,11 @@ function populate_calendar(){
 			eventColor: '#D4D4D4',
 			eventClick: function(event) {
         		if (event.url) {
-	            	window.open(event.url);
+	            	window.location = event.url;
     	        	return false;
         		}
     		}
+    		
 	});	
 	
 }
