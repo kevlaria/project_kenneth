@@ -31,7 +31,7 @@ class Event < ActiveRecord::Base
 
   def self.processOrders
   	@now = Event.where(:starts_at => Time.now - 5.hours..Time.now - 5.hours + 1.minute)
-  	@next = Event.where(:starts_at => Time.now - 6.hours..Time.now - 6.hours + 1.minute)
+  	@next = Event.where(:starts_at => Time.now - 4.hours..Time.now - 4.hours + 1.minute)
 
   	@now.each do |event|
       user = User.find(event.user_id)
@@ -39,26 +39,24 @@ class Event < ActiveRecord::Base
         json_string = f.read
         parsed_json = JSON.parse(json_string)
         location = parsed_json['location']['city']
-        temp_f = parsed_json['current_observation']['temp_f']
-        weather = parsed_json['current_observation']['weather']
-        puts temp_f.to_s
-        puts weather
-        if event.condition == nil || (event.condition == "Rainy" && weather == "Rain") ||
-          (event.condition == "Clear" && weather != "Rain") || (event.condition == "Hot" && temp_f > 80) ||
-          (event.condition == "Cold" && temp_f < 60) then
-          case event.category
-          when "Order"
+        @@temp_f = parsed_json['current_observation']['temp_f']
+        @@weather = parsed_json['current_observation']['weather']
+      end
+      if event.condition == nil || event.condition == "" || (event.condition == "Rainy" && @@weather == "Rain") ||
+          (event.condition == "Clear" && @@weather != "Rain") || (event.condition == "Hot" && @@temp_f > 80) ||
+          (event.condition == "Cold" && @@temp_f < 60) then
+        case event.category
+        when "Order"
             order = Order.find(event.order)
             order.make_delivery
-          when "Nest"
+        when "Nest"
             nest = Nest.find(event.nest)
             nest.change_thermostat user
-          when "Weather"
+        when "Weather"
             weather = Weather.find(event.weather)
             weather.get_weather user
-          end
         end
-      end
+      end      
     end
 
     @next.each do |event|

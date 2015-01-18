@@ -47,7 +47,7 @@ class Order < ActiveRecord::Base
 		@@client.messages.create(
 		  from: '+12673231393',
 		  to: '+1' + dropoff_phone_number,
-		  body: 'Hey ' + dropoff_name + '. You ordered ' + manifest + ' in your Kenneth Calendar. To confirm the order, click on this link http://158.130.107.192/orders/confirm/' + access 
+		  body: 'Hey ' + dropoff_name + '. You ordered ' + manifest + ' in your Kenneth Calendar. To confirm the order, click on this link http://158.130.107.192:3000/orders/confirm/' + access 
 		)
 	end
 

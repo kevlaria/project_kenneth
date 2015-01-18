@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :nests
 
   resources :weathers
-
+  get "/orders/confirm/:id" => 'orders#confirm'
   resources :orders
 
   resources :events
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   
   get "/calendar/home"
   get "/calendar/events", to: 'calendar#events'
-  get "/orders/confirm/:id" => 'orders#confirm'
+
   root :to => redirect('/calendar/home')
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
