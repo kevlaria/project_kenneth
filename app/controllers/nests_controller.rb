@@ -29,7 +29,7 @@ class NestsController < ApplicationController
 
     respond_to do |format|
       if @nest.save
-        format.html { redirect_to @nest, notice: 'Nest was successfully created.' }
+        format.html { redirect_to calendars_path, notice: 'Nest was successfully created.' }
         format.json { render :show, status: :created, location: @nest }
       else
         format.html { render :new }

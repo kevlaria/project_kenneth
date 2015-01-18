@@ -19,7 +19,7 @@
 #  updated_at            :datetime
 #  confirmation          :boolean          default(FALSE), not null
 #  access                :string(255)
-#  user_id               :integer
+#  event_id              :integer
 #
 
 class Order < ActiveRecord::Base

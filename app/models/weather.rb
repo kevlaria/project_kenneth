@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  created_at :datetime
 #  updated_at :datetime
-#  user_id    :integer
+#  event_id   :integer
 #
 
 require 'open-uri'
@@ -30,7 +30,7 @@ class Weather < ActiveRecord::Base
   @@client = Twilio::REST::Client.new
 
 
-	def get_weather(user)
+	def get_weather
 		open('http://api.wunderground.com/api/4c59338731743188/geolookup/conditions/q/' + state + '/' + city + '.json') do |f|
 		  json_string = f.read
 		  parsed_json = JSON.parse(json_string)
