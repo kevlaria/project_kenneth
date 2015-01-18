@@ -31,8 +31,6 @@ class Nest < ActiveRecord::Base
 	def change_thermostat user
 		nest = NestThermostat::Nest.new(email: "paulsl@seas.upenn.edu", password: "password")
 		nest.temperature = temperature
-		puts user.phone
-		puts user.name
 		@@client.messages.create(
 		  from: '+12673231393',
 		  to: '+1' + user.phone.to_s,

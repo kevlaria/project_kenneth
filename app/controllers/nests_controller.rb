@@ -70,6 +70,6 @@ class NestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def nest_params
-      params.require(:nest).permit(:product, :temperature)
+      params.require(:nest).permit(:product, :temperature, :event_id)
     end
 end

@@ -31,4 +31,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :events
+
+  def orders
+    events.select{ |e| e.category == 'Order'}.map{ |e| e.order}.uniq
+  end
+
 end
