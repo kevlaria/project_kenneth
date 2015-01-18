@@ -24,20 +24,32 @@
       <% if @where == "new" %>
         <div>
           <p>
+
+
             <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-primary">
-                <%= f.radio_button(:category, "Order") %>
-                <%= label_tag(:postmate, "Order Products") %>
+              <label class="btn btn-primary show">
+                <div class="show">
+                  <%= f.radio_button(:category, "Order", class: "show") %>
+                  <%= label_tag(:postmate, "Order Products", class: "show") %>
+                </div>
               </label>
-              <label class="btn btn-primary">
-                <%= f.radio_button(:category, "Nest") %>
-                <%= label_tag(:next, "Adjust Thermostat") %>
+              <label class="btn btn-primary hide_fav">
+                <div class="hide_fav">
+                  <%= f.radio_button(:category, "Nest", class: "hide_fav") %>
+                  <%= label_tag(:next, "Adjust Thermostat", class: "hide_fav") %>
+                </div>
               </label>
-              <label class="btn btn-primary">
-                <%= f.radio_button(:category, "Weather") %>
-                <%= label_tag(:next, "Weather Alert") %>
+              <label class="btn btn-primary hide_fav">
+                <div class="hide_fav">
+                  <%= f.radio_button(:category, "Weather", class: "hide_fav") %>
+                  <%= label_tag(:next, "Weather Alert", class: "hide_fav") %>
+                </div>
               </label>
             </div>
+            <p><div class="editfield" style="display:none;">
+              <%= collection_select(:order, :order_id, Order.all, :id, :manifest, {:prompt => true}) %>
+            </div></p>
+
           </p>
           <p>
             Repeat:
@@ -58,3 +70,11 @@
 </div>
 <% end %>
 
+<script>
+$('.show').on("click", function(){
+  $('.editfield').show();
+});
+$('.hide_fav').on("click", function(){
+  $('.editfield').hide();
+});
+</script>
