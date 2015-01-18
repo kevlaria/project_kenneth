@@ -25,19 +25,15 @@ class WeathersController < ApplicationController
   # POST /weathers
   # POST /weathers.json
   def create
-
-    if params[:commit] == 'Current Location'
-      location = Geocoder.search(request.remote_ip).first
-      city = location.data['city']
-      state = location.data['region_name']
-      @weather = Weather.new(city: city, state: state)
-    else
-      @weather = Weather.new(weather_params)
-    end
+    puts params
+    puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    @weather = Weather.new(weather_params)
+    "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
     respond_to do |format|
       if @weather.save
-        format.html { redirect_to @weather, notice: 'Weather was successfully created.' }
+        p @weather
+        format.html { redirect_to root_path, notice: 'Weather task was successfully created.' }
         format.json { render :show, status: :created, location: @weather }
       else
         format.html { render :new }
@@ -51,7 +47,7 @@ class WeathersController < ApplicationController
   def update
     respond_to do |format|
       if @weather.update(weather_params)
-        format.html { redirect_to @weather, notice: 'Weather was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Weather task was successfully updated.' }
         format.json { render :show, status: :ok, location: @weather }
       else
         format.html { render :edit }

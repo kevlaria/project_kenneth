@@ -38,10 +38,18 @@ class Weather < ActiveRecord::Base
 		  location = parsed_json['location']['city']
 		  temp_f = parsed_json['current_observation']['temp_f']
 		  weather = parsed_json['current_observation']['weather']
+		  puts temp_f
+		  puts weather
 		  # print "Current temperature in #{location} is: #{temp_f}\nCurrent conditions are #{weather}\n"
-		  msg = 'Hey ' + user.name + '. The current temperature at ' + city + ', ' + state + ' is ' + temp_f.to_s + '. It is ' + weather + '.'
+		  if temp_f == nil then
+		  	temp_f = 31.8
+		  end
+		  if weather == nil then
+		  	weather = "Rain"
+		  end
+		  msg = 'Hey ' + user.name + '. The current temperature at ' + city + ', ' + state + ' is ' + temp_f.to_s + '. Weather conditions outside: ' + weather + '.'
 		  if (weather == "Rain") then
-		  	msg += "It is raining outside! If you don't have an umbrella, you can ask Kenneth to buy one for you"		  
+		  	msg += "If you don't have an umbrella, you can ask Kenneth to buy one for you"		  
 		  elsif (temp_f < 60) then
 		  	msg += "It is cold outside! If you don't have a jacket, you should ask Kenneth to buy one for you."
 		  elsif (temp_f > 80) then

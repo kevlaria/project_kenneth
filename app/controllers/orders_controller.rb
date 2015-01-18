@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
       @order = order[0]
       @order.confirmation = true
       @order.save
-      @event = Event.find(@order.event_id)
+      @event = @order.event
       respond_to do |format|
         format.html { redirect_to @event, notice: 'Order was confirmed!' }
         format.json { render :show, status: :created, location: @order }
