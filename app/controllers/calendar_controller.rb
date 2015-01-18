@@ -11,8 +11,6 @@ class CalendarController < ApplicationController
     
     current_user_id = current_user.id
     
-    p current_user
-    
     events = Event.all
     response = []
     events.each do |event|

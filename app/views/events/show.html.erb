@@ -1,33 +1,41 @@
 
-<div>
+<div class="show_details">
 	<p id="notice"><%= notice %></p>
-	<h1>Event details</h1>
-	<p>
-	  <strong>Name:</strong>
-	  <%= @event.name %>
-	</p>
-
-	<p>
-	  <strong>Time:</strong>
-	  <%= @event.starts_at %>
-	</p>
-
-	<%= link_to 'Edit schedule', edit_event_path(@event), class: "btn btn-default" %>
-
-	<% if @event.category == "Order" %>
-		<h1>Order details</h1>
-			<% @order = @event.order %>
-			<%= render "orders/show", :order => @order  %>
-			<%= link_to 'Edit order', edit_order_path(@order), class: "btn btn-default" %>
-	<% elsif @event.category == "Nest" %>
-		<h1>Thermostat change details</h1>
-	<% elsif @event.category == "Weather" %>
-		<h1>Weather Alert details</h1>
-	<% else %>
-	<% end %>
-
-	<%= link_to 'Back', '/calendar/home', method: :get %>
-
+	<h1>About this event</h1>
+	
+	<div class="bounding_box">
+		<div class="general_details">
+			  <strong>Event name:</strong>
+			  <div class="detail_info">
+				  <%= @event.name %>
+			  </div>
+			  </br>
+			  <strong>Set on:</strong>
+			  <div class="detail_info">
+				  <%= @event.starts_at.strftime("%Y-%m-%d") %> <strong>at </strong>  <%= @event.starts_at.strftime("%H:%M") %>
+			  </div>
+			  </br>
+			<%= link_to 'Edit schedule', edit_event_path(@event), class: "btn btn-default" %>
+		</div>
+		
+		<div class="special_details">
+			<% if @event.category == "Order" %>
+					<% @order = @event.order %>
+					<%= render "orders/show", :order => @order  %>
+					<%= link_to 'Edit order', edit_order_path(@order), class: "btn btn-default" %>
+			<% elsif @event.category == "Nest" %>
+					<% @nest = @event.nest %>
+					<%= render "nests/show", :nest => @nest  %>
+					<%= link_to 'Edit thermostat settings', edit_nest_path(@nest), class: "btn btn-default" %>
+			<% elsif @event.category == "Weather" %>
+					<% @weather = @event.weather %>
+					<%= render "weathers/show", :weather => @weather  %>
+					<%= link_to 'Edit weather settings', edit_weather_path(@weather), class: "btn btn-default" %>
+			<% else %>
+			<% end %>
+		</div>	
+	</div>
+		<%= link_to 'Back', '/calendar/home', method: :get, class: "btn btn-back"%>
 </div>
 
 

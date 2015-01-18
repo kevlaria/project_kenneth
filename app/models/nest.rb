@@ -7,7 +7,7 @@
 #  temperature :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  user_id     :integer
+#  event_id    :integer
 #
 
 class Nest < ActiveRecord::Base
