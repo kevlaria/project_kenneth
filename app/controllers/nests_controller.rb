@@ -15,6 +15,7 @@ class NestsController < ApplicationController
   # GET /nests/new
   def new
     @nest = Nest.new
+    @event_id = params["event_id"]
   end
 
   # GET /nests/1/edit

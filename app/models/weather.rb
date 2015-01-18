@@ -1,4 +1,3 @@
-
 # == Schema Information
 #
 # Table name: weathers
@@ -6,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 
 require 'open-uri'

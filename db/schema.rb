@@ -31,10 +31,10 @@ ActiveRecord::Schema.define(version: 20150118021942) do
     t.integer  "temperature"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "event_id"
   end
 
-  add_index "nests", ["user_id"], name: "index_nests_on_user_id"
+  add_index "nests", ["event_id"], name: "index_nests_on_event_id"
 
   create_table "orders", force: true do |t|
     t.text     "manifest"
@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(version: 20150118021942) do
     t.datetime "updated_at"
     t.boolean  "confirmation",          default: false, null: false
     t.string   "access"
-    t.integer  "user_id"
+    t.integer  "event_id"
   end
 
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+  add_index "orders", ["event_id"], name: "index_orders_on_event_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -86,9 +86,9 @@ ActiveRecord::Schema.define(version: 20150118021942) do
   create_table "weathers", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "event_id"
   end
 
-  add_index "weathers", ["user_id"], name: "index_weathers_on_user_id"
+  add_index "weathers", ["event_id"], name: "index_weathers_on_event_id"
 
 end

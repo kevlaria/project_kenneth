@@ -19,6 +19,7 @@
     <%= f.label :temperature %><br>
     <%= f.number_field :temperature %>
   </div>
+  <%= f.hidden_field :event_id, :value => @event_id %>
   <div class="actions">
     <%= f.submit %>
   </div>

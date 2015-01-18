@@ -19,7 +19,8 @@
 #  updated_at            :datetime
 #  confirmation          :boolean          default(FALSE), not null
 #  access                :string(255)
-#events/2
+#  user_id               :integer
+#
 
 class Order < ActiveRecord::Base
 

@@ -33,12 +33,16 @@ class EventsController < ApplicationController
         case @event.category
         when "Order"
           @order = Order.new
-          format.html { redirect_to new_order_path(@order), notice: 'Event was successfully created.' }
+          format.html { redirect_to new_order_path(@order, :event_id => @event.id), notice: 'Event was successfully created.' }
           format.json { render :show, status: :created, location: @event }
         when "Nest"
           @nest = Nest.new
-          format.html { redirect_to new_nest_path(@nest), notice: 'Event was successfully created.' }
-          format.json { render :show, status: :created, location: @event }          
+          format.html { redirect_to new_nest_path(@nest, :event_id => @event.id), notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }
+        when "Weather"
+          @weather = Weather.new
+          format.html { redirect_to new_nest_path(@weather, :event_id => @event.id), notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }                 
         else
           format.html { redirect_to @event, notice: 'Event was successfully created.' }
           format.json { render :show, status: :created, location: @event }

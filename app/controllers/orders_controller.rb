@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    @event_id = params["event_id"]
   end
 
   # GET /orders/1/edit
@@ -39,9 +40,6 @@ class OrdersController < ApplicationController
   def create
     params["order"]["access"] = Digest::SHA1.base64digest((Order.count + 1).to_s)
     @order = Order.new(order_params)
-    puts "eita eita eita"
-    puts @order.access
-    puts @order.confirmation
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -108,7 +106,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:confirmation, :access, :manifest, :pickup_name, :pickup_address, :pickup_phone_number, :pickup_business_name, :pickup_notes, :dropoff_name, :dropoff_address, :dropoff_phone_number, :dropoff_business_name, :dropoff_notes, :quote_id)
+      params.require(:order).permit(:event_id, :confirmation, :access, :manifest, :pickup_name, :pickup_address, :pickup_phone_number, :pickup_business_name, :pickup_notes, :dropoff_name, :dropoff_address, :dropoff_phone_number, :dropoff_business_name, :dropoff_notes, :quote_id)
     end
 
     def distance_from_me(place)
