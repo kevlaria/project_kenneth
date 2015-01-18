@@ -13,7 +13,7 @@ require 'json'
 
 
 class Weather < ActiveRecord::Base
-
+  belongs_to :event
 	@@account_sid = 'ACd882ca7c1db91ca067d5072ac3f0a5b8'
   @@auth_token = 'c64507802fc8ffd839ca321db09a827b'
 

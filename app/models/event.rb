@@ -13,7 +13,9 @@
 #
 
 class Event < ActiveRecord::Base
-  
+  has_one :nest
+  has_one :order
+  has_one :weather
   belongs_to :user
   
 
@@ -26,11 +28,11 @@ class Event < ActiveRecord::Base
   	@now.each do |event|
   		case event.category
       when "Order"
-  			order = Order.find(event.event_id)
+  			order = Order.find(event.order_id)
   			order.make_delivery
       when "Nest"
         user = User.find(event.user_id)
-        nest = Nest.find(event.event_id)
+        nest = Nest.find(event.nest_id)
         nest.change_thermostat user
       when "Weather"
       end

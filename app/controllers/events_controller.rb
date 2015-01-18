@@ -26,7 +26,6 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    params["event"]["event_id"] = get_next_id(params["event"]["category"])    
     @event = Event.new(event_params)
     @event.user_id = current_user.id
     respond_to do |format|
@@ -93,15 +92,6 @@ class EventsController < ApplicationController
   end
 
   private
-
-    def get_next_id type
-      case type
-        when "Order"
-          return Order.count + 1
-        when "Nest"
-          return Nest.count + 1
-      end
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_event

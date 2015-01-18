@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150118001834) do
+ActiveRecord::Schema.define(version: 20150118021942) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -31,7 +31,10 @@ ActiveRecord::Schema.define(version: 20150118001834) do
     t.integer  "temperature"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "nests", ["user_id"], name: "index_nests_on_user_id"
 
   create_table "orders", force: true do |t|
     t.text     "manifest"
@@ -50,7 +53,10 @@ ActiveRecord::Schema.define(version: 20150118001834) do
     t.datetime "updated_at"
     t.boolean  "confirmation",          default: false, null: false
     t.string   "access"
+    t.integer  "user_id"
   end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -80,6 +86,9 @@ ActiveRecord::Schema.define(version: 20150118001834) do
   create_table "weathers", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "weathers", ["user_id"], name: "index_weathers_on_user_id"
 
 end
