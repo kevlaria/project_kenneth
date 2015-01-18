@@ -34,7 +34,9 @@ class Event < ActiveRecord::Base
         user = User.find(event.user_id)
         nest = Nest.find(event.nest_id)
         nest.change_thermostat user
-      when "Weather"
+			when "Weather"
+				weather = Weather.find(event.weather_id)
+				weather.get_weather
       end
   	end
 

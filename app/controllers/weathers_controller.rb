@@ -25,7 +25,15 @@ class WeathersController < ApplicationController
   # POST /weathers
   # POST /weathers.json
   def create
-    @weather = Weather.new(weather_params)
+
+    if params[:commit] == 'Current Location'
+      location = Geocoder.search(request.remote_ip).first
+      city = location.data['city']
+      state = location.data['region_name']
+      @weather = Weather.new(city: city, state: state)
+    else
+      @weather = Weather.new(weather_params)
+    end
 
     respond_to do |format|
       if @weather.save
@@ -70,6 +78,6 @@ class WeathersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def weather_params
-      params[:weather]
+      params.require(:weather).permit(:city, :state)
     end
 end
