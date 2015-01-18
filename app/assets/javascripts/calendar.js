@@ -1,5 +1,11 @@
 function populate_calendar(){
 	$('#calendar').fullCalendar({
+			header: {
+				left: 'prev, next today',
+				center: 'title',
+				right: 'month, agendaWeek, agendaDay',
+				},
+			timezone: 'local',
 			defaultDate: new Date(),
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
