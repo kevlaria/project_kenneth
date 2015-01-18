@@ -13,7 +13,9 @@
 #
 
 class Event < ActiveRecord::Base
-  
+  has_one :nest
+  has_one :order
+  has_one :weather
   belongs_to :user
   
 
@@ -24,10 +26,16 @@ class Event < ActiveRecord::Base
   	@now = Event.where(:starts_at => Time.now - 5.hours..Time.now - 5.hours + 1.minute)
   	@next = Event.where(:starts_at => Time.now - 6.hours..Time.now - 6.hours + 1.minute)
   	@now.each do |event|
-  		if event.category == "Order" then
-  			order = Order.find(event.event_id)
+  		case event.category
+      when "Order"
+  			order = Order.find(event.order_id)
   			order.make_delivery
-  		end
+      when "Nest"
+        user = User.find(event.user_id)
+        nest = Nest.find(event.nest_id)
+        nest.change_thermostat user
+      when "Weather"
+      end
   	end
 
   	@next.each do |event|

@@ -26,7 +26,6 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    params["event"]["event_id"] = get_next_id(params["event"]["category"])    
     @event = Event.new(event_params)
     @event.user_id = current_user.id
     respond_to do |format|
@@ -34,11 +33,16 @@ class EventsController < ApplicationController
         case @event.category
         when "Order"
           @order = Order.new
-          format.html { redirect_to new_order_path(@order), notice: 'Event was successfully created.' }
+          format.html { redirect_to new_order_path(@order, :event_id => @event.id), notice: 'Event was successfully created.' }
           format.json { render :show, status: :created, location: @event }
         when "Nest"
-          format.html { redirect_to new_order_path, notice: 'Event was successfully created.' }
-          format.json { render :show, status: :created, location: @event }          
+          @nest = Nest.new
+          format.html { redirect_to new_nest_path(@nest, :event_id => @event.id), notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }
+        when "Weather"
+          @weather = Weather.new
+          format.html { redirect_to new_nest_path(@weather, :event_id => @event.id), notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }                 
         else
           format.html { redirect_to @event, notice: 'Event was successfully created.' }
           format.json { render :show, status: :created, location: @event }
@@ -92,14 +96,6 @@ class EventsController < ApplicationController
   end
 
   private
-
-    def get_next_id type
-      case type
-        when "Order"
-          return Order.count + 1
-        when "Nest"
-      end
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_event

@@ -15,6 +15,7 @@ class WeathersController < ApplicationController
   # GET /weathers/new
   def new
     @weather = Weather.new
+    @event_id = params["event_id"]
   end
 
   # GET /weathers/1/edit

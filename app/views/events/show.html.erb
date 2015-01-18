@@ -16,7 +16,7 @@
 
 	<% if @event.category == "Order" %>
 		<h1>Order details</h1>
-			<% @order = Order.find(@event.event_id) %>
+			<% @order = @event.order %>
 			<%= render "orders/show", :order => @order  %>
 			<%= link_to 'Edit order', edit_order_path(@order), class: "btn btn-default" %>
 	<% elsif @event.category == "Nest" %>

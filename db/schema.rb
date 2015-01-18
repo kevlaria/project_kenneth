@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150117231919) do
+ActiveRecord::Schema.define(version: 20150118021942) do
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20150117231919) do
 
   add_index "events", ["starts_at"], name: "index_events_on_starts_at"
   add_index "events", ["user_id"], name: "index_events_on_user_id"
+
+  create_table "nests", force: true do |t|
+    t.string   "product"
+    t.integer  "temperature"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "event_id"
+  end
+
+  add_index "nests", ["event_id"], name: "index_nests_on_event_id"
 
   create_table "orders", force: true do |t|
     t.text     "manifest"
@@ -43,7 +53,10 @@ ActiveRecord::Schema.define(version: 20150117231919) do
     t.datetime "updated_at"
     t.boolean  "confirmation",          default: false, null: false
     t.string   "access"
+    t.integer  "event_id"
   end
+
+  add_index "orders", ["event_id"], name: "index_orders_on_event_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -73,6 +86,9 @@ ActiveRecord::Schema.define(version: 20150117231919) do
   create_table "weathers", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "event_id"
   end
+
+  add_index "weathers", ["event_id"], name: "index_weathers_on_event_id"
 
 end

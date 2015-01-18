@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
+  resources :nests
+
   resources :weathers
 
   resources :orders
 
   resources :events
-
   devise_for :users
+  resources :users
+
+
   
   get "/calendar/home"
   get "/calendar/events", to: 'calendar#events'

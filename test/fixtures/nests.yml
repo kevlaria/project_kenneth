@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: nests
+#
+#  id          :integer          not null, primary key
+#  product     :string(255)
+#  temperature :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  user_id     :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product: MyString
+  temperature: 1
+
+two:
+  product: MyString
+  temperature: 1
