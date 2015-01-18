@@ -8,7 +8,6 @@
 #  event_id   :integer
 #  city       :string(255)
 #  state      :string(255)
-#
 
 require 'open-uri'
 require 'json'
