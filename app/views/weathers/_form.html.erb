@@ -22,8 +22,8 @@
   </div>
   <%= f.hidden_field :event_id, :value => @event_id %>
   <div class="actions">
-    <%= link_to 'Back', nests_path, class: "btn btn-back" %>
-    <%= f.submit class: "btn btn-back" %>
+    <%= link_to 'Back', '/calendar/home', method: :get, class: "btn btn-back" %>
+    <%= f.submit 'Create Alert', class: "btn btn-create" %>
   </div>
 </div>
 <% end %>
