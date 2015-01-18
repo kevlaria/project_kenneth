@@ -38,8 +38,10 @@ gem 'whenever', :require => false
 gem 'twilio-ruby'
 gem 'devise'
 gem 'annotate'
-gem 'httparty'
+gem 'httparty', '~> 0.8.3'
 
+gem 'firebase'
+gem 'nest_thermostat'
 
 
 group :production do

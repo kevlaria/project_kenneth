@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  resources :nests
+
   resources :weathers
 
   resources :orders
 
   resources :events
+
+  resources :users
 
   devise_for :users
   

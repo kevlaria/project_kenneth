@@ -1,0 +1,27 @@
+<h1>Listing nests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Temperature</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @nests.each do |nest| %>
+      <tr>
+        <td><%= nest.product %></td>
+        <td><%= nest.temperature %></td>
+        <td><%= link_to 'Show', nest %></td>
+        <td><%= link_to 'Edit', edit_nest_path(nest) %></td>
+        <td><%= link_to 'Destroy', nest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Nest', new_nest_path %>

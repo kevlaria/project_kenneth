@@ -37,7 +37,8 @@ class EventsController < ApplicationController
           format.html { redirect_to new_order_path(@order), notice: 'Event was successfully created.' }
           format.json { render :show, status: :created, location: @event }
         when "Nest"
-          format.html { redirect_to new_order_path, notice: 'Event was successfully created.' }
+          @nest = Nest.new
+          format.html { redirect_to new_nest_path(@nest), notice: 'Event was successfully created.' }
           format.json { render :show, status: :created, location: @event }          
         else
           format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -98,6 +99,7 @@ class EventsController < ApplicationController
         when "Order"
           return Order.count + 1
         when "Nest"
+          return Nest.count + 1
       end
     end
 
