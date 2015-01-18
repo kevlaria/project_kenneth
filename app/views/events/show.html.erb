@@ -21,8 +21,14 @@
 			<%= link_to 'Edit order', edit_order_path(@order), class: "btn btn-default" %>
 	<% elsif @event.category == "Nest" %>
 		<h1>Thermostat change details</h1>
+			<% @nest = @event.nest %>
+			<%= render "nests/show", :nest => @nest  %>
+			<%= link_to 'Edit thermostat settings', edit_nest_path(@nest), class: "btn btn-default" %>
 	<% elsif @event.category == "Weather" %>
 		<h1>Weather Alert details</h1>
+			<% @weather = @event.weather %>
+			<%= render "weathers/show", :weather => @weather  %>
+			<%= link_to 'Edit weather settings', edit_weather_path(@weather), class: "btn btn-default" %>
 	<% else %>
 	<% end %>
 

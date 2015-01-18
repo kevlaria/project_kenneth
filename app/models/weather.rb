@@ -8,7 +8,6 @@
 #  event_id   :integer
 #  city       :string(255)
 #  state      :string(255)
-#
 
 require 'open-uri'
 require 'json'
@@ -45,7 +44,7 @@ class Weather < ActiveRecord::Base
 		@@client.messages.create(
 		  from: '+12673231393',
 		  to: '+1' + current_user.phone,
-		  body: 'Hey ' + current_user.name + '. The current weather is ' + weather + 'To confirm the order, click on this link http://158.130.107.192/orders/confirm/' + access 
+		  body: 'Hey ' + current_user.name + '. The current weather is ' + weather + '.'
 		)
 
 	end
