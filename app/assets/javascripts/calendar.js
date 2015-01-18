@@ -4,7 +4,7 @@ function populate_calendar(){
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
 			events: '/calendar/events.json',
-			eventColor: '#D4D4D4',
+			eventColor: '#828181',
 			eventClick: function(event) {
         		if (event.url) {
 	            	window.location = event.url;

@@ -42,7 +42,7 @@ class EventsController < ApplicationController
         when "Weather"
           @weather = Weather.new(event_id: @event.id)
           @weather.save
-          format.html { redirect_to calendars_path, notice: 'Event was successfully created.' }
+          format.html { redirect_to new_weather_path(@weather, :event_id => @event.id), notice: 'Event was successfully created.' }
           format.json { render :show, status: :created, location: @event }                 
         else
           format.html { redirect_to @event, notice: 'Event was successfully created.' }

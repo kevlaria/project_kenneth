@@ -38,17 +38,25 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    params["order"]["access"] = Digest::SHA1.base64digest((Order.count + 1).to_s)
-    @order = Order.new(order_params)
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to calendars_path, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+    if params[:commit] == 'Order Nearby'
+      order_nearby
+      render :new
+    else
+      params["order"]["access"] = Digest::SHA1.base64digest((Order.count + 1).to_s)
+      @order = Order.new(order_params)
+      puts @order.access
+      puts @order.confirmation
+      respond_to do |format|
+        if @order.save
+          format.html { redirect_to calendars_path, notice: 'Order was successfully created.' }
+          format.json { render :show, status: :created, location: @order }
+        else
+          format.html { render :new }
+          format.json { render json: @order.errors, status: :unprocessable_entity }
+        end
       end
     end
+
   end
 
   # PATCH/PUT /orders/1
@@ -76,26 +84,28 @@ class OrdersController < ApplicationController
   end
 
   def order_nearby
-    @pickup_name = params['pickup_name']
-    location = Geocoder.search(request.remote_ip)
+    pickup_name = params['pickup_name']
+    puts request.remote_ip
+    location = Geocoder.search(request.remote_ip).first
+    p location
     # @pickup_name = 'Starbucks'
     # location = Geocoder.search('158.130.108.92').first
     lat = location.data['latitude']
     lon = location.data['longitude']
-    @dropoff_name = current_user.name
-    @dropoff_address = Geocoder.search([lat, lon]).first.data['formatted_address']
-    @dropoff_phone_number = current_user.phone
+    dropoff_name = current_user.name
+    dropoff_address = Geocoder.search([lat, lon]).first.data['formatted_address']
+    dropoff_phone_number = current_user.phone
 
     yelp_params = {term: @pickup_name}
     coordinates = {latitude: lat, longitude: lon}
     results = Yelp.client.search_by_coordinates(coordinates, yelp_params).businesses.select {|place| place.has_key?(:phone)}
     result = results.min_by { |place| place.distance}
-    @pickup_address = result.location.display_address.join(', ')
-    @pickup_phone_number = result.phone.last(10)
-    puts @pickup_address
-    puts @pickup_phone_number
-
-    format.html { render :new }
+    pickup_address = result.location.display_address.join(', ')
+    pickup_phone_number = result.phone.last(10)
+    @order = Order.new(object_params)
+    @order.assign_attributes({pickup_name: pickup_name, dropoff_name: dropoff_name,
+        dropoff_address: dropoff_address, dropoff_phone_number: dropoff_phone_number,
+        pickup_address: pickup_address, pickup_phone_number: pickup_phone_number})
   end
 
   private
