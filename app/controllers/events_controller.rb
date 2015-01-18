@@ -40,8 +40,7 @@ class EventsController < ApplicationController
           format.html { redirect_to new_nest_path(@nest, :event_id => @event.id), notice: 'Event was successfully created.' }
           format.json { render :show, status: :created, location: @event }
         when "Weather"
-          @weather = Weather.new(event_id: @event.id)
-          @weather.save
+          @weather = Weather.new
           format.html { redirect_to new_weather_path(@weather, :event_id => @event.id), notice: 'Event was successfully created.' }
           format.json { render :show, status: :created, location: @event }                 
         else

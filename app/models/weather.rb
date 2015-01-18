@@ -31,7 +31,7 @@ class Weather < ActiveRecord::Base
   @@client = Twilio::REST::Client.new
 
 
-	def get_weather
+	def get_weather user
 		open('http://api.wunderground.com/api/4c59338731743188/geolookup/conditions/q/' + state + '/' + city + '.json') do |f|
 		  json_string = f.read
 		  parsed_json = JSON.parse(json_string)
@@ -39,13 +39,14 @@ class Weather < ActiveRecord::Base
 		  temp_f = parsed_json['current_observation']['temp_f']
 		  weather = parsed_json['current_observation']['weather']
 		  # print "Current temperature in #{location} is: #{temp_f}\nCurrent conditions are #{weather}\n"
+		  	@@client.messages.create(
+		  		from: '+12673231393',
+		  		to: '+1' + user.phone.to_s,
+		  		body: 'Hey ' + user.name + '. The current temperature at ' + city + ', ' + state + 'is ' + temp_f.to_s + '. It is ' + weather + '.'
+			)
 		end
 
-		@@client.messages.create(
-		  from: '+12673231393',
-		  to: '+1' + current_user.phone,
-		  body: 'Hey ' + current_user.name + '. The current weather is ' + weather + '.'
-		)
+
 
 	end
 	

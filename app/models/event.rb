@@ -28,15 +28,16 @@ class Event < ActiveRecord::Base
   	@now.each do |event|
   		case event.category
       when "Order"
-  			order = Order.find(event.order_id)
+  			order = Order.find(event.order)
   			order.make_delivery
       when "Nest"
         user = User.find(event.user_id)
-        nest = Nest.find(event.nest_id)
+        nest = Nest.find(event.nest)
         nest.change_thermostat user
 			when "Weather"
-				weather = Weather.find(event.weather_id)
-				weather.get_weather
+				weather = Weather.find(event.weather)
+        user = User.find(event.user_id)
+				weather.get_weather user
       end
   	end
 
