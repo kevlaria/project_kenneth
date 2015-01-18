@@ -40,6 +40,10 @@ gem 'devise'
 gem 'annotate'
 gem 'httparty'
 
+gem 'geocoder'
+gem 'yelp'
+
+
 
 
 group :production do
