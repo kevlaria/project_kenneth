@@ -96,3 +96,62 @@ div {
 .btn:visited {
   color: #ffffff;
 }
+
+.btn.btn-default {
+  float: left;
+  margin: 10px 0px 0px 0px
+}
+
+.btn.btn-back{
+  float: left;
+  margin: 0px 0px 5px 0px;
+  background: #828181;
+  background-image: -webkit-linear-gradient(top, #828181, #828181);
+  background-image: -moz-linear-gradient(top, #828181, #828181);
+  background-image: -ms-linear-gradient(top, #828181, #828181);
+  background-image: -o-linear-gradient(top, #828181, #828181);
+  background-image: linear-gradient(to bottom, #828181, #828181);
+}
+
+.show_details {
+}
+
+.bounding_box {
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  padding: 20px;
+  line-height: 200%;
+  margin: 0px 0px 20px 0px;
+  
+}
+
+.general_details {
+  width: 49%;
+  display: inline-block;
+  margin-bottom: -1000px;
+  padding-bottom: 1000px;
+  vertical-align: top;
+}
+
+.special_details {
+  width: 49%;
+  display: inline-block;
+  margin-bottom: -1000px;
+  padding-bottom: 1000px;
+  vertical-align: top;
+}
+
+.detail_info {
+  padding: 0px 20px; 
+}
+
+.detail_info.small {
+  font-size: 10px;
+}
+
+footer {
+  width: 75%;
+  border-top: 1px solid lightgrey;
+  margin: 10px 0px 0px 0px;
+  padding: 10px 0px 0px 0px;
+}

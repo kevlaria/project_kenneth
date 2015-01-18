@@ -42,7 +42,7 @@ class Weather < ActiveRecord::Base
 		  	@@client.messages.create(
 		  		from: '+12673231393',
 		  		to: '+1' + user.phone.to_s,
-		  		body: 'Hey ' + user.name + '. The current temperature at ' + city + ', ' + state + 'is ' + temp_f.to_s + '. It is ' + weather + '.'
+		  		body: 'Hey ' + user.name + '. The current temperature at ' + city + ', ' + state + ' is ' + temp_f.to_s + '. It is ' + weather + '.'
 			)
 		end
 

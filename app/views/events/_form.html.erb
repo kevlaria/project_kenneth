@@ -1,5 +1,5 @@
 <%= form_for(@event) do |f| %>
-<div style="width: 100%; overflow: hidden;">
+<div>
     <div>
     <% if @event.errors.any? %>
       <div id="error_explanation">
@@ -12,7 +12,7 @@
         </ul>
       </div>
     <% end %>
-
+    <div class="general_details">
       <div class="field">
         <%= f.label :name %><br>
         <%= f.text_field :name %>
@@ -21,51 +21,62 @@
         <%= f.label :starts_at %><br>
         <%= f.datetime_select :starts_at %>
       </div>
+      <p>
+        <div class="field">
+          <%= f.label :only_run_action_if_weather_is %><br>
+          <%= f.select :condition, options_for_select([['None', nil], ['Cold', 'Cold'], ['Hot', 'Hot'], ['Raining', 'Raining'], ['Clear', 'Clear']], @event.condition) %>
+        </div>
+      </p>
+      <div class="actions">
+        <%= link_to 'Back', '/calendar/home', method: :get, class: "btn btn-back" %> <%= f.submit class: "btn btn-back" %> 
+      </div> 
+    </div>
       <% if @where == "new" %>
+      <div class="special_details">  
         <div>
           <p>
+            <div class="field">
+            <%= f.label :add_action_to_event %><br>
 
-
-            <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-primary show">
-                <div class="show">
-                  <%= f.radio_button(:category, "Order", class: "show") %>
-                  <%= label_tag(:postmate, "Order Products", class: "show") %>
-                </div>
-              </label>
-              <label class="btn btn-primary hide_fav">
-                <div class="hide_fav">
-                  <%= f.radio_button(:category, "Nest", class: "hide_fav") %>
-                  <%= label_tag(:next, "Adjust Thermostat", class: "hide_fav") %>
-                </div>
-              </label>
-              <label class="btn btn-primary hide_fav">
-                <div class="hide_fav">
-                  <%= f.radio_button(:category, "Weather", class: "hide_fav") %>
-                  <%= label_tag(:next, "Weather Alert", class: "hide_fav") %>
-                </div>
-              </label>
+              <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary show">
+                  <div class="show">
+                    <%= f.radio_button(:category, "Order", class: "show") %>
+                    <%= label_tag(:postmate, "Order Products", class: "show") %>
+                  </div>
+                </label>
+                <label class="btn btn-primary hide_fav">
+                  <div class="hide_fav">
+                    <%= f.radio_button(:category, "Nest", class: "hide_fav") %>
+                    <%= label_tag(:next, "Adjust Thermostat", class: "hide_fav") %>
+                  </div>
+                </label>
+                <label class="btn btn-primary hide_fav">
+                  <div class="hide_fav">
+                    <%= f.radio_button(:category, "Weather", class: "hide_fav") %>
+                    <%= label_tag(:next, "Weather Alert", class: "hide_fav") %>
+                  </div>
+                </label>
+              </div>
             </div>
-            <p><div class="editfield" style="display:none;">
-              <%= collection_select(:order, :order_id, Order.all, :id, :manifest, {:prompt => true}) %>
-            </div></p>
+              <p><div class="editfield" style="display:none;">
+                <%= f.label :do_you_want_to_repeat_an_old_order? %><br>
+                <%= collection_select(:order, :order_id, Order.all, :id, :manifest, {:prompt => true}) %>
+              </div></p>
 
           </p>
           <p>
-            Repeat:
-            <%= radio_button_tag(:repeat, "Never") %>
-            <%= label_tag(:never, "Never") %>
-            <%= radio_button_tag(:repeat, "Daily") %>
-            <%= label_tag(:daily, "Daily") %>
-            <%= radio_button_tag(:repeat, "Weekly") %>
-            <%= label_tag(:weekly, "Weekly") %>
+            <div class="field">
+              <%= f.label :repeat_this_event_and_action %><br>
+              <%= radio_button_tag(:repeat, "Never", true) %> Never
+              <%= radio_button_tag(:repeat, "Daily") %> Daily
+              <%= radio_button_tag(:repeat, "Weekly") %> Weekly
+            </div>
           </p>
         </div>
       <% else %>
       <% end %>
-      <div class="actions">
-        <%= f.submit %>
-      </div>
+    </div>
     </div>
 </div>
 <% end %>

@@ -44,7 +44,7 @@ gem 'nest_thermostat'
 gem 'geocoder'
 gem 'yelp'
 
-
+gem 'font-awesome-rails'
 
 group :production do
 	gem 'pg'

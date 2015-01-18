@@ -1,28 +1,47 @@
-
-<p>
-  <strong>Order:</strong>
-  <div style="padding: 10px; font-size: 10px; margin-top: 0px;">
-    <%= @order.manifest %>
-  </div>
-</p>
-
-<p>
+  <strong>Order: </strong>
+  <div class="detail_info">
+	  <%= @order.manifest %>
+  </div></br>
   <strong>Ordered from:</strong></br>
-  <div style="padding: 10px; font-size: 10px">
-    <strong>Company:</strong> <%= @order.pickup_business_name %></br>
-    <strong>Address:</strong> <%= @order.pickup_address %></br>
-    <strong>Phone:</strong> <%= @order.pickup_phone_number %></br>
-    <strong>Order notes:</strong> <%= @order.pickup_notes %>
-  </div>
-</p>
+  <div class="detail_info small">
 
-<p>
+    <% if @order.pickup_business_name%>
+	    <strong>Company:</strong> <%= @order.pickup_business_name %></br>
+    <% end %>
+    
+    <% if @order.pickup_address%>
+	    <strong>Address:</strong> <%= @order.pickup_address %></br>
+  	<% end %>
+    
+    <% if @order.pickup_phone_number%>
+		<strong>Phone:</strong> <%= @order.pickup_phone_number %></br>
+  	<% end %>
+  	
+  	<% if @order.pickup_notes%>
+	    <strong>Order notes:</strong> <%= @order.pickup_notes %>
+	<% end %>
+  </div>
+
+	</br>
+  
   <strong>Deliver to:</strong></br>
-  <div style="padding: 10px; font-size: 10px">
-    <strong>Name:</strong> <%= @order.dropoff_name %></br>
-    <strong>Address:</strong> <%= @order.dropoff_address %></br>
-    <strong>Phone:</strong> <%= @order.dropoff_phone_number %></br>
-    <strong>Delivery Notes:</strong> <%= @order.dropoff_notes %>
+  <div class="detail_info small">
+  	
+  	<% if @order.dropoff_name%>
+		<strong>Name:</strong> <%= @order.dropoff_name %></br>
+	<% end %>
+	
+  	<% if @order.dropoff_address%>
+	    <strong>Address:</strong> <%= @order.dropoff_address %></br>
+	<% end %>
+	
+  	<% if @order.dropoff_phone_number%>
+	    <strong>Phone:</strong> <%= @order.dropoff_phone_number %></br>
+	<% end %>
+
+  	<% if @order.dropoff_notes%>
+	    <strong>Delivery Notes:</strong> <%= @order.dropoff_notes %>
+	<% end %>
   </div>
 </p>
 
