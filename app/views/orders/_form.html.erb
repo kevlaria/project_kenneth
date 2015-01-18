@@ -14,9 +14,9 @@
 <div class="show_details">
   <div class="bounding_box">
 
-    <div class="general_details">
-      <strong>Order from:</strong></br>
-        <div class="detail_info small">
+<table style="width:100%">
+  <td>
+      </br><strong>Order from:</strong></br></br>
           <div class="field">
             <%= f.label :manifest %><br>
             <%= f.text_area :manifest %>
@@ -40,14 +40,10 @@
             <%= f.label :pickup_notes %><br>
             <%= f.text_area :pickup_notes %>
           </div>
-        </div>
-    </div>
+  </td>
 
-  </br>
-  
-    <div class="special_details">
-      <strong>Deliver to:</strong></br>
-        <div class="detail_info small">
+  <td>  
+      <strong>Deliver to:</strong></br></br>
           <div class="field">
             <%= f.label :dropoff_name %><br>
             <%= f.text_field :dropoff_name %>
@@ -73,8 +69,9 @@
           <div class="actions">
             <%= f.submit %>
           </div>
-        </div>
-    </div>
+  </td>
+</table>
+
 
   </div>
 </div>
